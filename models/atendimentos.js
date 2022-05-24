@@ -32,14 +32,45 @@ class Atendimento {
             const atendimentoDatado = {...atendimento, dataCriacao,data}
  
             const sql = 'INSERT INTO Atendimentos SET ?'
-
         }
 
     }
-        
+/*
+    adicionaComprador(comprador, res) {
+            const sql = 'INSERT INTO comprador SET ?'
+    }
+*/
+    adicionaComprador(comprador, res) {
+        const dataCriacao = new Date()
+        const compradorDatado = {...comprador, dataCriacao}
+        const sql = 'INSERT INTO comprador SET ?'
+ 
+        conexao.query(sql, compradorDatado, (erro, resultados) => {
+            if(erro) {
+                console.log(erro)
+            } else {
+               console.log(resultados)
+            }
+        })
+    }
 
     
-
+    buscaComprador(id, res) 
+    {
+        const sql = `SELECT * FROM comprador WHERE id=${id}`;
+     
+        conexao.query(sql, (erro, resultados) => 
+        { 
+            const comprador = resultados;
+            if(erro) { 
+                res.status(400).json(erro);
+            } else {
+                res.status(200).json(comprador);
+            }
+     
+        }) 
+    
+    }
 
             
     buscaPorId(id, res) 

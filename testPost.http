@@ -1,0 +1,10 @@
+POST http://localhost:3000/comprador/adicionarComprador HTTP/1.1
+content-type: application/json
+
+{
+    "nome":"galdir",
+    "cpf":"lksadjflasçlkdf",
+    "idade":"12",
+    "data": "2022-05-23",
+    "dataCriacao": "23/05/2022"
+}
