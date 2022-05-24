@@ -8,6 +8,8 @@ module.exports = app => {
         Atendimento.buscaPorId(id, res);
     });
 
+   
+
     app.patch('/atendimentos/:id', (req, res) => {
         const id = parseInt(req.params.id)
         const valores = req.body
@@ -26,6 +28,10 @@ module.exports = app => {
     app.get('/comprador/:id', (req, res) => { 
         const id = parseInt(req.params.id);
         Atendimento.buscaComprador(id, res);
+    });
+
+    app.get('/comprador', (req, res) => { 
+        Atendimento.lista(res);
     });
 
     app.post('/comprador/adicionarComprador', (req, res) => {

@@ -40,6 +40,20 @@ class Atendimento {
             const sql = 'INSERT INTO comprador SET ?'
     }
 */
+    lista(res) {
+        const sql = 'SELECT * FROM comprador'
+
+        conexao.query(sql, (erro, resultados) => { 
+            if(erro) {
+                res.status(400).json(erro)
+            } else { 
+                res.status(200).json(resultados)
+            }
+        })
+    }
+    
+
+
     adicionaComprador(comprador, res) {
         const dataCriacao = new Date()
         const compradorDatado = {...comprador, dataCriacao}
