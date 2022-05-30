@@ -8,7 +8,6 @@ module.exports = app => {
         Vendas.listarVendas(res);
     });
 
-
     app.get('/vendas/buscarPorId/:id', (req, res) => { 
         const id = parseInt(req.params.id);
         Vendas.buscaPorId(id, res);
