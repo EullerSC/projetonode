@@ -1,4 +1,4 @@
-const moment = require('moment')
+//const moment = require('moment')
 const conexao = require('../infraestrutura/conexao')
  
  
@@ -7,11 +7,11 @@ class Vendas {
     // GET
 
     listarVendas(res) {
-        const sql = 'SELECT * FROM vendas'
+        const sql = 'SELECT * FROM Vendas'
 
         conexao.query(sql, (erro, resultados) => { 
             if(erro) {
-                res.status(400).json(erro)
+                res.status(400).json(erro);
             } else { 
                 res.status(200).json(resultados)
             }
@@ -36,55 +36,46 @@ class Vendas {
     
     }
 
+    // POST
 
-    adicionarVenda(vendas,res){
+    adicionarVenda(venda,res){
         const sql = 'INSERT INTO Vendas SET ?' 
-        conexao.query(sql, (erro, resultados) => {
+        conexao.query(sql,venda, (erro, resultados) => {
             if(erro) {
-                console.log(erro)
+                res.status(400).json(erro);
             } else {
-               console.log(resultados)
+                res.status(200).json(resultados);
             }
         })
     }
 
-    
-    buscaVendas(id, res) 
+    // PATCH
+
+    corrigirVenda(id, valores, res) 
     {
-        const sql = `SELECT * FROM vendas WHERE id=${id}`;
-     
-        conexao.query(sql, (erro, resultados) => 
-        { 
-            const vendas = resultados;
-            if(erro) { 
-                res.status(400).json(erro);
-            } else {
-                res.status(200).json(vendas);
-            }
-     
-        }) 
-    
-    }
-
-            
-
-
-
-    altera(id, valores, res) 
-    {
-        const sql = 'UPDATE Atendimentos SET ? WHERE id=?'
+        const sql = 'UPDATE Vendas SET ? WHERE id=?'
      
         conexao.query(sql, [valores, id], (erro, resultados) => 
         { 
-            if(erro) 
-            {
+            if(erro){
                 res.status(400).json(erro)
-            } else 
-            {
+            } else{
                 res.status(200).json(resultados)
-        
             }
-    
+        })
+    }
+
+    // DELETE
+
+    deletaVenda(id, res) {
+        const sql = 'DELETE FROM Vendas WHERE id=?'
+ 
+        conexao.query(sql, id, (erro, resultados) => {
+            if(erro) {
+                res.status(400).json(erro)
+            } else {
+                res.status(200).json({resultados})
+            }
         })
     }
 

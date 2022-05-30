@@ -1,0 +1,11 @@
+PATCH http://localhost:3000/vendas/corrigirVenda/2 HTTP/1.1
+content-type: application/json
+ 
+{
+"vendedor":"Rogerio",
+"comprador":"asdasdasd",
+"carro":"teste",
+"anoCarro":"teste",
+"marcaCarro":"teste",
+"corCarro":"teste"
+}
