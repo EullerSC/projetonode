@@ -1,25 +1,26 @@
 
-const Atendimento = require('../models/atendimentos');
+const Vendas = require('../models/vendas');
 
  
 module.exports = app => { 
-    app.get('/atendimentos/:id', (req, res) => { 
+    app.get('/vendas/buscarPorId/:id', (req, res) => { 
         const id = parseInt(req.params.id);
-        Atendimento.buscaPorId(id, res);
+        Vendas.buscaPorId(id, res);
     });
 
-   
+    app.get('/vendas/listarVendas', (res) => { 
+        Vendas.listarVendas(res);
+    });
 
-    app.patch('/atendimentos/:id', (req, res) => {
+    app.patch('/vendas/:id', (req, res) => {
         const id = parseInt(req.params.id)
         const valores = req.body
-     
-        Atendimento.altera(id, valores, res)
+        Vendas.altera(id, valores, res)
     })
     
-    app.post('/atendimentos', (req, res) => {
-        const atendimento = req.body
-        Atendimento.adiciona(atendimento, res)
+    app.post('/vendas/adicionarVenda', (req, res) => {
+        const vendas = req.body
+        Vendas.adicionarVenda(vendas, res)
      
     })
 
@@ -40,10 +41,6 @@ module.exports = app => {
         Atendimento.adicionaComprador(comprador, res)
      
     })
-     
-    
-
-
 }
 
 
