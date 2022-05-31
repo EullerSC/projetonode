@@ -54,8 +54,8 @@ class initConnection {
                         this.conexao.query(sqlInsert[i], erroInsert => {
                             if(erroInsert) {
                                 console.log(erroInsert)
-                            }else{
-                                console.log('Insert inserido')
+                            }else if(i == 9){
+                                console.log('10 Inserts inseridos com sucesso!')
                             }
                         })               
                     }    
